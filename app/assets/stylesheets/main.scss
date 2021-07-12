@@ -1,0 +1,125 @@
+// Place all the styles related to the Main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+$main_font: verdana, arial, helvetica, sans-serif;
+$secondary_color: #ffffff;
+$primary_color: #6d0300;
+$accent_color: #d8a833;
+$x_padding: 80px;
+
+$header_font_color: white;
+
+@mixin inline_list($font_size, $font_weight, $font_color, $decoration){
+    ul{
+        font-size: $font_size;
+        li{
+            display: inline-block;
+            a{
+                @if not $decoration {
+                    text-decoration: none;
+                }
+                font-weight: $font_weight;
+                color: $font_color;
+            }
+        }
+    }
+}
+
+body{
+    font-family: $main_font;
+    padding: 0;
+    margin: 0;
+}
+
+header{
+    background-color: $primary_color;
+    color: $header_font_color;
+    padding: 5px $x_padding;
+    img, h1, p, div{
+        vertical-align: middle;
+        display: inline-block;
+    }
+    img{
+        width: 80px;
+    }
+    h1{
+        margin-right: 5px;
+    }
+    p{
+        font-size: 16px;
+    }
+    div{
+        text-align: right;
+        float: right;
+
+        // Inline List
+        @include inline_list(12px, normal, $accent_color, true);
+
+        input[type=submit]{
+            border: 1px solid $secondary_color;
+            background-color: transparent;
+            color: $secondary_color;
+        }
+    }
+}
+
+.navbar{
+    background-color: darken($secondary_color, 7%);
+    color: darken($secondary_color, 50%);
+    padding: 2px;
+    li{
+        &:not(:last-child){
+            border-right: 1px solid darken($secondary_color, 50%);
+        }
+        a{
+            padding: 0 15px;
+        }
+    }
+    // Inline List
+    @include inline_list(14px, bold, darken($secondary_color, 60%), false);
+}
+
+.container{
+    padding: 55px $x_padding - 25;
+    .sidebar{
+        background-color: darken($secondary_color, 7%);
+        border: 1px solid darken($secondary_color, 20%);
+        display: inline-block;
+        vertical-align: top;
+        padding: 5px 20px;
+        ul{
+            list-style-type: none;
+            font-size: 14px;
+            padding: 0;
+            li{
+                padding: 5px 0;
+                color: lighten($primary_color, 15%);
+                a{
+                    color: lighten($primary_color, 15%);
+                }
+            }
+        }
+    }
+    .main{
+        display: inline-block;
+        padding: 0 20px;
+        width: 155vh;
+        h2{
+            color: lighten($primary_color, 15%);
+            margin: 0;
+        }
+        h3, a{
+            color: lighten($primary_color, 15%);
+        }
+        p span{
+            @extend h3;
+            text-decoration: underline;
+        }
+        li span{
+            font-weight: bold;
+        }
+        hr{
+            background-color: black;
+        }
+    }
+}
